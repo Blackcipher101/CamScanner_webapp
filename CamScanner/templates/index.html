@@ -1,0 +1,12 @@
+<html>
+  <head>
+    <title>Pi Video Surveillance</title>
+  </head>
+  <body>
+    <h1>Camscan</h1>
+    <img src="{% url 'stream' %}">
+    <form action="{% url 'capture' %}">
+    <input type="submit" value="Capture" />
+</form>
+  </body>
+</html>

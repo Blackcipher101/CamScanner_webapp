@@ -26,7 +26,8 @@ SECRET_KEY = 'ak278c31jqxqv)v2gif*$0y@on4_zvmeci&zi@5tt4q5)^lhhm'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Application definition
 

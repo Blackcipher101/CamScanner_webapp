@@ -1,0 +1,44 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+</head>
+{% csrf_token %}
+    <img onclick="showCoords(event)" src="data:image/png;base64, {{ img }}"></img>
+    <p id="demo"></p>
+   <a href="{% url 'display_points' %}"><button onclick="Unread()">test</button></a>
+   <p id="demo1"></p>
+
+
+    <script type="text/javascript">
+  var fruits = [];
+function showCoords(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  fruits = fruits + x + ' ' + y +',';
+  document.getElementById("demo").innerHTML = fruits;
+}
+
+
+    function Unread(){
+
+            $.ajax("{% url 'points' %}", {
+				type: 'POST',  // http method
+				data: { csrfmiddlewaretoken: "{{ csrf_token }}",
+          myData: fruits }  // data to submit
+			});
+
+        }
+
+
+
+
+</script>
+
+<body>
+
+</body>
+</html>
