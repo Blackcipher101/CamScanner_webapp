@@ -2,7 +2,12 @@
 <html>
 
 <body>
-  <p>{{ po }}<p>
     <img src="data:image/png;base64, {{ img }}"></img>
+    <form action="{% url 'download' %}">
+    <input type="submit" value="download" />
+    </form>
+    <form action="{% url 'html_render' %}">
+    <input type="submit" value="back" />
+    </form>
   </body>
 </html>

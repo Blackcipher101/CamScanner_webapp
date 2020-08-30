@@ -22,7 +22,7 @@ def applyper(frame,points):
             to=""
             pts.append([x,y])
 
-    print(pts)
+
     img=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     image=frame
     su=[]
@@ -33,9 +33,9 @@ def applyper(frame,points):
             pts[i],pts[0]=pts[0],pts[i]
         elif max(su)==(pts[i][0]+pts[i][1]):
             pts[2],pts[i]=pts[i],pts[2]
-        elif pts[i][1]>pts[i][0]:
+        elif pts[i][0]>pts[i][1]:
             pts[i],pts[3]=pts[3],pts[i]
-        elif pts[i][1]<pts[i][0]:
+        elif pts[i][0]<pts[i][1]:
             pts[i],pts[1]=pts[1],pts[i]
 
     pts4 = np.array(pts,np.int32)

@@ -47,6 +47,6 @@ def per_blur(frame,points):
     M = cv2.getPerspectiveTransform(pts1,pts2)
 
     dst = cv2.warpPerspective(th3,M,(600,700))
-    dst = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
     
+
     return dst

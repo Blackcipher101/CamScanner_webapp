@@ -9,9 +9,13 @@ from django.http import HttpResponse
 import base64
 from . import Applying_perspective
 from . import Per_blur
+from . import convert
+import mimetypes
 
 frame =[[]]
 points=[]
+done=[[]]
+imagelist=[]
 class VideoCamera(object):
     def __init__(self):
         self.video = cv2.VideoCapture(0)
@@ -50,6 +54,12 @@ def stream(request):
     except:  # This is bad! replace it with proper handling
         pass
 def html_render(request):
+    global frame
+    global points
+    global done
+    frame=[]
+    points=[]
+    done=[[]]
     return render (request,"index.html")
 
 def capture(request):
@@ -66,10 +76,8 @@ def capture(request):
 def points(request):
     global points
     points=request.POST['myData']
-    print(points)
     return redirect('display_points')
 def display_points(request):
-    print("test")
     global points
     img=Applying_perspective.applyper(frame,points)
     ret, frame_buff = cv2.imencode('.png', img) #could be png, update html as well
@@ -82,10 +90,26 @@ def display_points(request):
 def display_last(request):
     global frame
     global points
+    global done
     done=Per_blur.per_blur(frame,points)
     ret, frame_buff = cv2.imencode('.png', done) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
 
     frame2=str(frame_b64)
     frame1=frame2[2:len(frame2)-1]
+    global imagelist
+    imagelist.append(done)
+
     return render(request,'final.html',{'img':frame1})
+def download(request):
+    global done
+    global imagelist
+    convert.convert(imagelist)
+    fl_path = '/home/nehal/Camscanner_web_app/my.pdf'
+    filename = 'my.pdf'
+
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
