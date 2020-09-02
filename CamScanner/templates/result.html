@@ -1,41 +1,85 @@
 {% load static %}
 <html>
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 
     </script>
-    <link rel="stylesheet" href="{% static 'Scan/Scan.css' %}">
+      <link rel="stylesheet" type="text/css "href="{% static 'Scan/Scan.css' %}">
     <style>
 #test {
-text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+.header {
+  padding: 10px;
+  background: black;
+  color: white;
+  font-size: 17px;
+  margin-bottom:40px;
+}
+.inc
+{
+  font-size: 200%;
+  line-height: 0
+}
+.down
+{
+  margin-bottom:5px;
+}
+.but {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 900px;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 </style>
+
 </head>
+<div class="header">
+  <p class="down"><span class="inc">C</span>amScan  &nbsp;    Documentation<p>
+</div>
 {% csrf_token %}
 <div  id="test">
   <img onclick="showCoords(event)" src="data:image/png;base64, {{ img }}"></img>
 </div>
-
+    <p>number of clicks(do four)<p>
     <p id="demo"></p>
-   <a href="{% url 'display_points' %}"><button onclick="Unread()">test</button></a>
+   <span class="center"><a href="{% url 'display_points' %}"><button class="but" onclick="Unread()">test</button></a></span>
    <p id="demo1"></p>
 
 
     <script type="text/javascript">
   var fruits = [];
+  var click= 0
 function showCoords(event) {
+  click= click+1;
   var x = event.clientX;
   var y = event.clientY;
   fruits = fruits + x + ' ' + y +',';
-  document.getElementById("demo").innerHTML = fruits;
+  document.getElementById("demo").innerHTML = click;
 }
 
 
     function Unread(){
       var testDiv = document.getElementById("test");
-      var hey = testDiv.offsetLeft+' '+testDiv.offsetTop;
+      var hey = testDiv.offsetLeft+' '+testDiv.offsetTop+',';
 
 
             $.ajax("{% url 'points' %}", {
@@ -53,6 +97,7 @@ function showCoords(event) {
 </script>
 
 <body>
+
 
 </body>
 </html>

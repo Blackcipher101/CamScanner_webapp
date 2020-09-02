@@ -16,6 +16,8 @@ frame =[[]]
 points=[]
 done=[[]]
 imagelist=[]
+refpoints=[]
+deb=0
 class VideoCamera(object):
 
     def __init__(self):
@@ -60,33 +62,43 @@ def html_render(request):
     global points
     global done
     global cam
+    global refpoints
     cam = VideoCamera()
     frame=[]
     points=[]
     done=[[]]
+    refpoints=[]
     return render (request,"index.html")
 
 def capture(request):
     global frame
-    frame=cam.get_capture()
-    cam.__del__()
-    h,w,c=frame.shape
+    global deb
+    if deb!=1:
+        frame=cam.get_capture()
+        cam.__del__()
+    deb=0
     ret, frame_buff = cv2.imencode('.png', frame) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
 
     frame2=str(frame_b64)
     frame1=frame2[2:len(frame2)-1]
     # Note this was fixed to be one dict with the context variables
-    return render(request, 'result.html', {'img': frame1, 'h':h ,'w':w})
+    return render(request, 'result.html', {'img': frame1,})
 def points(request):
     global points
+    global refpoints
     points=request.POST['myData']
     refpoints=request.POST['refrence']
-    print(refpoints)
+    print(len(points))
     return redirect('display_points')
 def display_points(request):
     global points
-    img=Applying_perspective.applyper(frame,points)
+    global refpoints
+    img , pts =Applying_perspective.applyper(frame,points,refpoints)
+    if len(pts)!=4:
+        global deb
+        deb=1
+        return redirect('capture')
     ret, frame_buff = cv2.imencode('.png', img) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
 
@@ -98,7 +110,8 @@ def display_last(request):
     global frame
     global points
     global done
-    done=Per_blur.per_blur(frame,points)
+    global refpoints
+    done=Per_blur.per_blur(frame,points,refpoints)
     ret, frame_buff = cv2.imencode('.png', done) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
 

@@ -3,22 +3,41 @@ import numpy as np
 import string
 
 
-def applyper(frame,points):
+def applyper(frame,points,refpoints):
     pts=[]
     num = string.digits
-
+    a=0
     x=0
     y=0
     to=""
+    ro=""
+    refpts=[]
+    image=[[]]
+    for i in range(len(refpoints)-1):
+
+        if refpoints[i] in num:
+            ro=ro+refpoints[i]
+
+        if refpoints[i+1]==' ':
+
+            a=int(ro)
+            ro=""
+            refpts.append(a)
+        if refpoints[i+1]==',':
+
+            a=int(ro)
+            ro=""
+            refpts.append(a)
+
     for i in range(len(points)-1):
-        
+
         if points[i] in num:
             to=to+points[i]
         if points[i+1]==' ':
-            x=int(to)
+            x=int(to)-refpts[0]
             to=""
         if points[i+1]==',':
-            y=int(to)
+            y=int(to)-refpts[1]
             to=""
             pts.append([x,y])
 
@@ -37,10 +56,10 @@ def applyper(frame,points):
             pts[i],pts[3]=pts[3],pts[i]
         elif pts[i][0]<pts[i][1]:
             pts[i],pts[1]=pts[1],pts[i]
-
-    pts4 = np.array(pts,np.int32)
-    pts3 = pts4.reshape((-1,1,2))
-    image = cv2.polylines(image,[pts3],True,(0,255,255))
+    if len(pts)==4:
+        pts4 = np.array(pts,np.int32)
+        pts3 = pts4.reshape((-1,1,2))
+        image = cv2.polylines(image,[pts3],True,(0,255,255))
 
     """if key == ord('y'):
         for i in xrange(len(pts)):
@@ -65,6 +84,6 @@ def applyper(frame,points):
         cv2.imshow("final",dst)
         cv2.waitKey(5)"""
 
-    return image
+    return image , pts
     """else:
         applyper(frame,points)"""

@@ -4,22 +4,39 @@ import string
 from . import Sharpen
 
 
-def per_blur(frame,points):
+def per_blur(frame,points,refpoints):
     pts=[]
     num = string.digits
-    print(points)
+    a=0
     x=0
     y=0
     to=""
+    ro=""
+    refpts=[]
+    for i in range(len(refpoints)-1):
+
+        if refpoints[i] in num:
+            ro=ro+refpoints[i]
+
+        if refpoints[i+1]==' ':
+
+            a=int(ro)
+            ro=""
+            refpts.append(a)
+        if refpoints[i+1]==',':
+
+            a=int(ro)
+            ro=""
+            refpts.append(a)
     for i in range(len(points)-1):
         print(points[i])
         if points[i] in num:
             to=to+points[i]
         if points[i+1]==' ':
-            x=int(to)
+            x=int(to)-refpts[0]
             to=""
         if points[i+1]==',':
-            y=int(to)
+            y=int(to)-refpts[1]
             to=""
             pts.append([x,y])
 
@@ -40,13 +57,13 @@ def per_blur(frame,points):
             pts[i],pts[2]=pts[2],pts[i]
     Gblur = Sharpen.unsharp_mask(img)
     th3 = cv2.adaptiveThreshold(Gblur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-        cv2.THRESH_BINARY,11,6)
+        cv2.THRESH_BINARY,11,4)
     pts1 = np.float32(pts)
     pts2 = np.float32([[0,0],[600,0],[0,700],[600,700]])
 
     M = cv2.getPerspectiveTransform(pts1,pts2)
 
     dst = cv2.warpPerspective(th3,M,(600,700))
-    
+
 
     return dst
