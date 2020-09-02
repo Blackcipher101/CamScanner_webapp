@@ -1,8 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-
+<head>
+  <link rel="stylesheet" href="{% static 'Scan/Scan.css' %}">
+  <style>
+#test {
+text-align: center;
+}
+</style>
+</head>
 <body>
+  <div  id="test">
     <img src="data:image/png;base64, {{ img }}"></img>
+  </div>
     <form action="{% url 'download' %}">
     <input type="submit" value="download" />
     </form>

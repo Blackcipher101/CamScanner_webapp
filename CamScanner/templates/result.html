@@ -1,13 +1,23 @@
-
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+
     </script>
+    <link rel="stylesheet" href="{% static 'Scan/Scan.css' %}">
+    <style>
+#test {
+text-align: center;
+}
+</style>
 </head>
 {% csrf_token %}
-    <img onclick="showCoords(event)" src="data:image/png;base64, {{ img }}"></img>
+<div  id="test">
+  <img onclick="showCoords(event)" src="data:image/png;base64, {{ img }}"></img>
+</div>
+
     <p id="demo"></p>
    <a href="{% url 'display_points' %}"><button onclick="Unread()">test</button></a>
    <p id="demo1"></p>
@@ -24,11 +34,15 @@ function showCoords(event) {
 
 
     function Unread(){
+      var testDiv = document.getElementById("test");
+      var hey = testDiv.offsetLeft+' '+testDiv.offsetTop;
+
 
             $.ajax("{% url 'points' %}", {
 				type: 'POST',  // http method
 				data: { csrfmiddlewaretoken: "{{ csrf_token }}",
-          myData: fruits }  // data to submit
+          myData: fruits,
+        refrence: hey}  // data to submit
 			});
 
         }

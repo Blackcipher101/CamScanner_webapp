@@ -17,10 +17,13 @@ points=[]
 done=[[]]
 imagelist=[]
 class VideoCamera(object):
+
     def __init__(self):
+
         self.video = cv2.VideoCapture(0)
         (self.grabbed, self.frame) = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
+        t1=threading.Thread(target=self.update, args=()).start()
+
 
     def __del__(self):
         self.video.release()
@@ -37,7 +40,6 @@ class VideoCamera(object):
             (self.grabbed, self.frame) = self.video.read()
 
 
-cam = VideoCamera()
 
 
 def gen(camera):
@@ -57,6 +59,8 @@ def html_render(request):
     global frame
     global points
     global done
+    global cam
+    cam = VideoCamera()
     frame=[]
     points=[]
     done=[[]]
@@ -65,6 +69,7 @@ def html_render(request):
 def capture(request):
     global frame
     frame=cam.get_capture()
+    cam.__del__()
     h,w,c=frame.shape
     ret, frame_buff = cv2.imencode('.png', frame) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
@@ -76,6 +81,8 @@ def capture(request):
 def points(request):
     global points
     points=request.POST['myData']
+    refpoints=request.POST['refrence']
+    print(refpoints)
     return redirect('display_points')
 def display_points(request):
     global points

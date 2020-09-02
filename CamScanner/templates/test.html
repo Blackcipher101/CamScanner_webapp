@@ -1,9 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
-
+<head>
+  <title>Pi Video Surveillance</title>
+  <link rel="stylesheet" href="{% static 'Scan/Scan.css' %}">
+  <style>
+#test {
+text-align: center;
+}
+</style>
+</head>
 <body>
-  <p>{{ po }}<p>
+  <div  id="test">
     <img src="data:image/png;base64, {{ img }}"></img>
+  </div>
+
     <form action="{% url 'per_blur' %}">
     <input type="submit" value="ok!" />
 </form>

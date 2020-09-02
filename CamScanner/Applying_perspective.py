@@ -6,12 +6,12 @@ import string
 def applyper(frame,points):
     pts=[]
     num = string.digits
-    print(points)
+
     x=0
     y=0
     to=""
     for i in range(len(points)-1):
-        print(points[i])
+        
         if points[i] in num:
             to=to+points[i]
         if points[i+1]==' ':
@@ -40,7 +40,6 @@ def applyper(frame,points):
 
     pts4 = np.array(pts,np.int32)
     pts3 = pts4.reshape((-1,1,2))
-    print(pts3)
     image = cv2.polylines(image,[pts3],True,(0,255,255))
 
     """if key == ord('y'):
