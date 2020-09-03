@@ -5,3 +5,59 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  * For details, see https://creativecommons.org/licenses/by/3.0/.
  */
+
+#test {
+    text-align: center;
+}
+
+#test-result {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.header {
+    padding: 10px;
+    background: black;
+    color: white;
+    font-size: 17px;
+    margin-bottom:40px;
+}
+
+.inc {
+    font-size: 200%;
+    line-height: 0
+}
+
+.down {
+  margin-bottom:5px;
+}
+
+.but {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.center {
+    margin: 0;
+    position: absolute;
+    top: 900px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.centerq {
+    margin: 0;
+    position: absolute;
+    top: 850px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

@@ -7,56 +7,15 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 
     </script>
-      <link rel="stylesheet" type="text/css "href="{% static 'Scan/Scan.css' %}">
-    <style>
-#test {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
-.header {
-  padding: 10px;
-  background: black;
-  color: white;
-  font-size: 17px;
-  margin-bottom:40px;
-}
-.inc
-{
-  font-size: 200%;
-  line-height: 0
-}
-.down
-{
-  margin-bottom:5px;
-}
-.but {
-  background-color: black; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.center {
-  margin: 0;
-  position: absolute;
-  top: 900px;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
+    <link rel="stylesheet" type="text/css "href="{% static 'Scan/Scan.css' %}">
 
-</head>
+  </head>
+
 <div class="header">
   <p class="down"><span class="inc">C</span>amScan  &nbsp;    Documentation<p>
 </div>
 {% csrf_token %}
-<div  id="test">
+<div  id="test-result">
   <img onclick="showCoords(event)" src="data:image/png;base64, {{ img }}"></img>
 </div>
     <p>number of clicks(do four)<p>
