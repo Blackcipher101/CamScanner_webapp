@@ -61,3 +61,9 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+#test img, #test-result img {
+    border: 0.4rem solid black;
+    margin: 0;
+    padding: 0;
+}
