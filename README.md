@@ -61,7 +61,7 @@ To run server
 Go to the directory contianting manage.py
 ```
 python manage.py migrate
-python manage.py makemigrtation
+python manage.py makemigrations
 python manage.py runserver
 ```
 
