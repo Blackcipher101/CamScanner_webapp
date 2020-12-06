@@ -45,7 +45,7 @@ This is the Downloading of your PDF...... Wait
 #### Dependencies
 ```
 Go to the directory where you have cloned repo in cmd then 
-Run: pip install -r requirements.txt
+Run: pip install -r requirement.txt
 ```
 
 #### Project
