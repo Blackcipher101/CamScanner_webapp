@@ -38,6 +38,12 @@ This is the Downloading of your PDF...... Wait
 
 
 :boom: Voila ! you have your PDF ready
+#### Project
+
+Clone the repo
+```
+git clone "git-URL"
+```
 
 
 ### To bulid
@@ -48,12 +54,7 @@ Go to the directory where you have cloned repo in cmd then
 Run: pip install -r requirement.txt
 ```
 
-#### Project
 
-Clone the repo
-```
-git clone "git-URL"
-```
 
 To run server
 Go to the directory contianting manage.py
