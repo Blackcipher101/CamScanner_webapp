@@ -44,10 +44,8 @@ This is the Downloading of your PDF...... Wait
 
 #### Dependencies
 ```
-pip install Django
-pip install opencv-python
-pip install pillow
-pip install mime
+Go to the directory where you have cloned repo in cmd then 
+Run: pip install -r requirements.txt
 ```
 
 #### Project
