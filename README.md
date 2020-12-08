@@ -38,18 +38,6 @@ This is the Downloading of your PDF...... Wait
 
 
 :boom: Voila ! you have your PDF ready
-
-
-### To bulid
-
-#### Dependencies
-```
-pip install Django
-pip install opencv-python
-pip install pillow
-pip install mime
-```
-
 #### Project
 
 Clone the repo
@@ -57,11 +45,22 @@ Clone the repo
 git clone "git-URL"
 ```
 
+
+### To bulid
+
+#### Dependencies
+```
+Go to the directory where you have cloned repo in cmd then 
+Run: pip install -r requirement.txt
+```
+
+
+
 To run server
 Go to the directory contianting manage.py
 ```
 python manage.py migrate
-python manage.py makemigrations
+python manage.py makemigrtation
 python manage.py runserver
 ```
 
