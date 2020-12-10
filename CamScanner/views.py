@@ -112,6 +112,7 @@ def display_last(request):
     global done
     global refpoints
     done=Per_blur.per_blur(frame,points,refpoints)
+    
     ret, frame_buff = cv2.imencode('.png', done) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
 
