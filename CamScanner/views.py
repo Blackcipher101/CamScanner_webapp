@@ -9,7 +9,6 @@ from django.http import HttpResponse
 import base64
 from . import Applying_perspective
 from . import Per_blur
-from . import addRotation
 from . import convert
 import mimetypes
 
@@ -112,9 +111,7 @@ def display_last(request):
     global points
     global done
     global refpoints
-    global degree
     done=Per_blur.per_blur(frame,points,refpoints)
-    done=addRotation.addRotation(frame,degree)
     
     ret, frame_buff = cv2.imencode('.png', done) #could be png, update html as well
     frame_b64 = base64.b64encode(frame_buff)
