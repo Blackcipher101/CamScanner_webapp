@@ -51,7 +51,7 @@ git clone "git-URL"
 #### Dependencies
 ```
 Go to the directory where you have cloned repo in cmd then 
-Run: pip install -r requirement.txt
+Run: pip3 install -r requirement.txt
 ```
 
 
