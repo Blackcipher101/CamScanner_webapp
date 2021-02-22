@@ -1,6 +1,6 @@
 ## CamScan
 This a lightweight tool for making documents on the fly :running: from camera images.
-So this uses OpenCV and Django in tandom also pillow is used to make the pdf
+So this uses OpenCV and Django in tandom also pillow is used to make the pdf.
 
 ### Features
 1)To PDF<br>
